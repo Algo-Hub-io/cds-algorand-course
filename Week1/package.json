@@ -1,0 +1,15 @@
+{
+  "name": "week1",
+  "version": "1.0.0",
+  "description": "Hi everyone! The focus of this first lab is to setup your environment with [AlgoKit](https://developer.algorand.org/algokit/), get get you exposed to sending transactions from the command line.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "algosdk": "^2.6.0"
+  }
+}
