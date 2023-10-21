@@ -105,4 +105,5 @@ To access these accounts later, you can use `$ACCT1, $ACCT2` or `$ACCT3`.
 We're ready for the other sections now.
 
 [Creating and transferring assets](Assets.md)
+
 [Experiment with AlgoKit](Experiment.md)
