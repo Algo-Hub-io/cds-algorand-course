@@ -33,7 +33,7 @@ goal asset send --assetid $SET -f $ACCT2 -t $ACCT2 --amount 0
 goal asset send --assetid $SET -f $ACCT3 -t $ACCT3 --amount 0
 ```
 
-Next, we'll transfer some of each token from account ONE (the creator) to account TWO.
+Next, we'll transfer some of each token from account ACCT1 (the creator) to account ACCT2.
 
 ```bash
 goal asset send --amount 70000000000 -f $ACCT1 -t $ACCT2 --assetid $AHT
@@ -41,7 +41,7 @@ goal asset send --amount 70000000000 -f $ACCT1 -t $ACCT2 --assetid $SET
 ```
 
 ## Viewing assets
-Now that we have transferred the asset, let's view it in TWO's account
+Now that we have transferred the asset, let's view it in ACCT2's account
 ```bash
 goal account info -a $ACCT2
 ```
