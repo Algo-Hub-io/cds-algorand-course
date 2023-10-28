@@ -92,7 +92,7 @@ So that we can use these addresses easily, copy and paste the script below into 
 
 ```bash
 counter=1
-for addr in $(algokit goal account list | awk '{print $2}'); do
+for addr in $(goal account list | awk '{print $2}'); do
     export ACCT$counter=$addr
     echo "Set ACCT$counter=$addr"
     ((counter++))
