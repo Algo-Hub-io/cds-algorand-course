@@ -7,11 +7,6 @@ class AppState:
         default=pt.Int(0)
     )
 
-    counter_local = beaker.LocalStateValue(
-        stack_type=pt.TealType.uint64,
-        default=pt.Int(0)
-    )
-
 app = beaker.Application("simple_counter", state=AppState())
 
 @app.external
