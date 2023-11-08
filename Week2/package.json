@@ -1,0 +1,15 @@
+{
+  "name": "week2",
+  "version": "1.0.0",
+  "description": "To start this weeks Lab, we will be running some examples with the Algorand JS SDK - specifically, we'll be running the examples from last week in javascript browser and exploring them in the sandbox.",
+  "main": "gen_accounts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "algosdk": "^2.7.0"
+  }
+}

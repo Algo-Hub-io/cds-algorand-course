@@ -127,8 +127,8 @@ const decimals = 6;
 createAsset(acct, assetName, unitName, assetUrl, totalIssuance, decimals);
 console.log(acct)
 // send asset - first we opt in to the asset
-sendAsset(acct, acct.addr, 1010, 0);
+sendAsset(acct, acct.addr, 1013, 0);
 
 // send asset to address2
-sendAsset(acct, acct2, 1010, 1000);
+sendAsset(acct, acct2, 1013, 1000);
 
