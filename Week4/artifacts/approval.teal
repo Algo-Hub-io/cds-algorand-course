@@ -1,0 +1,248 @@
+#pragma version 8
+intcblock 0 1
+bytecblock 0x636f756e746572 0x6c6f63616c5f636f756e746572 0x151f7c75
+txn NumAppArgs
+intc_0 // 0
+==
+bnz main_l14
+txna ApplicationArgs 0
+pushbytes 0x30c6d58a // "opt_in()void"
+==
+bnz main_l13
+txna ApplicationArgs 0
+pushbytes 0x8b4dc980 // "add()uint64"
+==
+bnz main_l12
+txna ApplicationArgs 0
+pushbytes 0x7c4ddf1f // "deduct()uint64"
+==
+bnz main_l11
+txna ApplicationArgs 0
+pushbytes 0xb5e0961d // "add_local()void"
+==
+bnz main_l10
+txna ApplicationArgs 0
+pushbytes 0x2294f18f // "deduct_local()void"
+==
+bnz main_l9
+txna ApplicationArgs 0
+pushbytes 0x658ceb5d // "read_counter()uint64"
+==
+bnz main_l8
+err
+main_l8:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub readcountercaster_11
+intc_1 // 1
+return
+main_l9:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub deductlocalcaster_10
+intc_1 // 1
+return
+main_l10:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub addlocalcaster_9
+intc_1 // 1
+return
+main_l11:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub deductcaster_8
+intc_1 // 1
+return
+main_l12:
+txn OnCompletion
+intc_0 // NoOp
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub addcaster_7
+intc_1 // 1
+return
+main_l13:
+txn OnCompletion
+intc_1 // OptIn
+==
+txn ApplicationID
+intc_0 // 0
+!=
+&&
+assert
+callsub optincaster_6
+intc_1 // 1
+return
+main_l14:
+txn OnCompletion
+intc_0 // NoOp
+==
+bnz main_l16
+err
+main_l16:
+txn ApplicationID
+intc_0 // 0
+==
+assert
+intc_1 // 1
+return
+
+// opt_in
+optin_0:
+proto 0 0
+txn Sender
+bytec_1 // "local_counter"
+intc_0 // 0
+app_local_put
+retsub
+
+// add
+add_1:
+proto 0 1
+intc_0 // 0
+bytec_0 // "counter"
+bytec_0 // "counter"
+app_global_get
+intc_1 // 1
++
+app_global_put
+bytec_0 // "counter"
+app_global_get
+frame_bury 0
+retsub
+
+// deduct
+deduct_2:
+proto 0 1
+intc_0 // 0
+bytec_0 // "counter"
+bytec_0 // "counter"
+app_global_get
+intc_1 // 1
+-
+app_global_put
+bytec_0 // "counter"
+app_global_get
+frame_bury 0
+retsub
+
+// add_local
+addlocal_3:
+proto 0 0
+txn Sender
+bytec_1 // "local_counter"
+txn Sender
+bytec_1 // "local_counter"
+app_local_get
+intc_1 // 1
++
+app_local_put
+retsub
+
+// deduct_local
+deductlocal_4:
+proto 0 0
+txn Sender
+bytec_1 // "local_counter"
+txn Sender
+bytec_1 // "local_counter"
+app_local_get
+intc_1 // 1
+-
+app_local_put
+retsub
+
+// read_counter
+readcounter_5:
+proto 0 1
+intc_0 // 0
+bytec_0 // "counter"
+app_global_get
+frame_bury 0
+retsub
+
+// opt_in_caster
+optincaster_6:
+proto 0 0
+callsub optin_0
+retsub
+
+// add_caster
+addcaster_7:
+proto 0 0
+intc_0 // 0
+callsub add_1
+frame_bury 0
+bytec_2 // 0x151f7c75
+frame_dig 0
+itob
+concat
+log
+retsub
+
+// deduct_caster
+deductcaster_8:
+proto 0 0
+intc_0 // 0
+callsub deduct_2
+frame_bury 0
+bytec_2 // 0x151f7c75
+frame_dig 0
+itob
+concat
+log
+retsub
+
+// add_local_caster
+addlocalcaster_9:
+proto 0 0
+callsub addlocal_3
+retsub
+
+// deduct_local_caster
+deductlocalcaster_10:
+proto 0 0
+callsub deductlocal_4
+retsub
+
+// read_counter_caster
+readcountercaster_11:
+proto 0 0
+intc_0 // 0
+callsub readcounter_5
+frame_bury 0
+bytec_2 // 0x151f7c75
+frame_dig 0
+itob
+concat
+log
+retsub
